@@ -1,5 +1,9 @@
 const baseUrl = 'http://localhost:3030/jsonstore'
 
+export const getAll = async () => {
+ 
+};
+
 export const create = async (gameData) => {
     const response = await fetch(`${baseUrl}/games`, {
         method: 'POST',

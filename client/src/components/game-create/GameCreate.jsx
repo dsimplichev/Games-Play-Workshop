@@ -1,4 +1,13 @@
+
+
 export default function GameCreate() {
+    
+    const createGameSubmitHandler = (e) => {
+        e.preventDefault();
+        const gameData = Object.fromEntries(new FormData(e.currentTarget))
+    }
+
+
     return(
         <section id="create-page" classNname="auth">
             <form id="create">

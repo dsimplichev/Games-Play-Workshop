@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import * as authServices from './services/authService'
 import AuthContext from './context/authContext';
+import Path from './paths';
 
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
@@ -15,13 +16,16 @@ import GameDetails from './components/game-details/GameDetails';
 
 
 function App() {
+    const navigate = useNavigate()
+    
     const [auth, setAuth] = useState({});
     
     const loginSubmitHandler = async (values) => {
        
      const result = await authServices.login(values.email, values.password)
     
-     console.log(result);
+    setAuth(result)
+    navigate(Path.Home)
     };
     return (
         <AuthContext.Provider value={{loginSubmitHandler}}>

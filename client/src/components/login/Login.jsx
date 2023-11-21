@@ -1,16 +1,17 @@
 import { useContext } from "react";
-import useForm from "../../hooks/useForm"
-import AuthContext from "../../context/authContext";
+import useForm from "../../hooks/useForm";
+import AuthContext from "../../contexts/authContext";
 
-const LoginFormKeys = {
+const LoginFormKyes = {
     Email: 'email',
-    Password: 'password'
-}
+    Password: 'password',
+};
+
 export default function Login() {
-    const { loginSubmitHandler } = useContext(AuthContext)
+    const { loginSubmitHandler } = useContext(AuthContext);
     const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
-        [LoginFormKeys.Email]: '',
-        [LoginFormKeys.Password]: '',
+        [LoginFormKyes.Email]: '',
+        [LoginFormKyes.Password]: '',
     });
 
     return (
@@ -24,21 +25,20 @@ export default function Login() {
                     <input
                         type="email"
                         id="email"
-                        name={LoginFormKeys.Email}
+                        name={LoginFormKyes.Email}
                         placeholder="Sokka@gmail.com"
                         onChange={onChange}
-                        value={values[LoginFormKeys.Email]}
+                        value={values[LoginFormKyes.Email]}
                     />
 
                     <label htmlFor="login-pass">Password:</label>
                     <input
                         type="password"
                         id="login-password"
-                        name={LoginFormKeys.Password}
+                        name={LoginFormKyes.Password}
                         onChange={onChange}
-                        value={values[LoginFormKeys.Password]}
+                        value={values[LoginFormKyes.Password]}
                     />
-
                     <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
                         <span>If you don't have profile click <a href="#">here</a></span>
@@ -46,5 +46,5 @@ export default function Login() {
                 </div>
             </form>
         </section>
-    )
+    );
 }

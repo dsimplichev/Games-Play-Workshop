@@ -15,7 +15,7 @@ export default function GameCreate() {
 
             navigate('/games');
         } catch (err) {
-            // Error notification
+            
             console.log(err);
         }
     }

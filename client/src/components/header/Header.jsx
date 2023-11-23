@@ -1,55 +1,33 @@
-export default function Home() {
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/authContext';
+
+export default function Header() {
+    const {
+        isAuthenticated,
+        username,
+    } = useContext(AuthContext);
+
     return (
-        <section id="welcome-world">
+        <header>
+            <h1><Link className="home" to="/">GamesPlay</Link></h1>
+            <nav>
+                <Link to="/games">All games</Link>
+                {isAuthenticated && (
+                    <div id="user">
+                        <Link to="/games/create">Create Game</Link>
+                        <Link to="/logout">Logout</Link>
+                        <span>| {username}</span>
+                    </div>
+                )}
 
-            <div className="welcome-message">
-                <h2>ALL new games are</h2>
-                <h3>Only in GamesPlay</h3>
-            </div>
-            <img src="./images/four_slider_img01.png" alt="hero" />
-
-            <div id="home-page">
-                <h1>Latest Games</h1>
-
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/CoverFire.png" />
+                {!isAuthenticated && (
+                    <div id="guest">
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Register</Link>
                     </div>
-                    <h3>Cover Fire</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/ZombieLang.png" />
-                    </div>
-                    <h3>Zombie Lang</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/MineCraft.png" />
-                    </div>
-                    <h3>MineCraft</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-
-                <p className="no-articles">No games yet</p>
-            </div>
-        </section>
+                )}
+            </nav>
+        </header>
     );
 }
